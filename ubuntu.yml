@@ -176,3 +176,13 @@
         become: true
         apt:
           deb: /tmp/skypeforlinux-64.deb
+          
+    - block: 
+      - name: Downlaod Asbru
+        get_url:
+          url: https://packagecloud.io/asbru-cm/asbru-cm/packages/linuxmint/tricia/asbru-cm_6.3.2-1_all.deb/download.deb?distro_version_id=211
+          dest: ~/Downloads
+      - name: Install Asbru
+        become: true
+        apt:
+          deb: /home/anderson/Downloads/asbru-cm_6.3.2-1_all.deb
