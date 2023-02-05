@@ -163,3 +163,9 @@
         become: true
         apt:
           deb: /home/anderson/Downloads/asbru-cm_6.3.2-1_all.deb
+    - block: 
+      - name: Descomentando WaylandEnable
+            ansible.builtin.lineinfile:
+              path: /etc/gdm3/custom.conf
+              regexp: '^#WaylandEnable'
+              line: WaylandEnable=false
