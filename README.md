@@ -14,3 +14,7 @@ git clone https://github.com/lima-anderson/ferramentas.git
 ```shell
 ansible-playbook ferramentas/ubuntu.yml --ask-become-pass
 ```
+2. **Apply the configuration**
+```shell
+ansible-playbook ferramentas/ubuntu2.yml --ask-become-pass
+```
