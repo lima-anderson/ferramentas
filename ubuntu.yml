@@ -4,6 +4,9 @@
   connection: local
   tasks:
 
+    - name: Enable i386 architecture
+      command: dpkg --add-architecture i386
+
     - name: Installing Linux Apps
       become: true
       apt:
@@ -21,6 +24,12 @@
           - gnupg
           - lsb-release
           - transmission
+          - wine64
+          - wine32 
+          - libasound2-plugins:i386 
+          - libsdl2-2.0-0:i386 
+          - libdbus-1-3:i386 
+          - libsqlite3-0:i386
 
 
     - block:
@@ -114,7 +123,6 @@
         apt:
           name: obs-studio
 
-
     - block: 
       - name: Install Docker Key
         become: true
@@ -163,6 +171,17 @@
         become: true
         apt:
           deb: /home/anderson/Downloads/asbru-cm_6.3.2-1_all.deb
+
+    - block: 
+      - name: Download lutris
+        get_url:
+          url: https://github.com/lutris/lutris/releases/download/v0.5.12/lutris_0.5.12_all.deb
+          dest: /tmp/lutris.deb
+      - name: Install lutris
+        become: true
+        apt:
+          deb: /tmp/lutris.deb
+    
     - block: 
       - name: Descomentando WaylandEnable
             ansible.builtin.lineinfile:
