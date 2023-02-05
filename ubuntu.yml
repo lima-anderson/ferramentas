@@ -14,13 +14,14 @@
       loop:
           - flameshot
           - openconnect
-          - vlc
           - virtualbox
           - apt-transport-https
           - ca-certificates
           - software-properties-common
           - gnupg
           - lsb-release
+          - transmission
+
 
     - block:
       - name: Install Google Key
@@ -69,27 +70,28 @@
         loop: 
           - bbenoist.vagrant
           - hashicorp.terraform
+          - 4ops.packer
       
           
     - block: 
       - name: Download Teams
         get_url:
           url: https://packages.microsoft.com/repos/ms-teams/pool/main/t/teams/teams_1.5.00.23861_amd64.deb 
-          dest: /tmp
+          dest: /tmp/teams.deb
       - name: Install Teams Studio
         become: true
         apt:
-          deb: /tmp/teams_1.5.00.23861_amd64.deb 
+          deb: /tmp/teams.deb
 
     - block: 
       - name: Download Discord
         get_url:
           url: https://discord.com/api/download?platform=linux&format=deb # direto do site
-          dest: /tmp
+          dest: /tmp/discord.deb
       - name: Install Discord
         become: true
         apt:
-          deb: /tmp/discord-0.0.22.deb
+          deb: /tmp/discord.deb
 
 
     - block:
@@ -141,33 +143,6 @@
           url: 'https://github.com/docker/compose/releases/download/1.26.2/docker-compose-Linux-x86_64'
           dest: '/usr/local/bin/docker-compose'
           mode: 755
-      - name: Install Docker Machine Bash Completion
-        become: true
-        get_url:
-          url: 'https://raw.githubusercontent.com/docker/machine/v0.16.0/contrib/completion/bash/docker-machine.bash'
-          dest: '/etc/bash_completion.d/docker-machine'
-      - name: Install Docker-Compose Bash Completion
-        become: true
-        get_url:
-          url: 'https://raw.githubusercontent.com/docker/compose/1.26.2/contrib/completion/bash/docker-compose'
-          dest: '/etc/bash_completion.d/docker-compose'
-
-
-      - name: Install transmission Ubuntu Repo
-        become: true
-        apt_repository:
-          repo: 'ppa:transmissionbt/ppa'
-      
-      - name: update the apt package index i.e. apt-get update
-        become: true
-        apt: update_cache=yes
-      
-      - name: Install transmission
-        become: true
-        apt:
-          name:
-            - transmission
-            - transmission-qt
 
     - block: 
       - name: Download skype
