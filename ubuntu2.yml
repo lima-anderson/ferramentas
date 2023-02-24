@@ -14,7 +14,7 @@
         - /tmp/etc.deb
     - block: 
       - name: Descomentando WaylandEnable
-            ansible.builtin.lineinfile:
-              path: /etc/gdm3/custom.conf
-              regexp: '^#WaylandEnable'
-              line: WaylandEnable=false
+        ansible.builtin.lineinfile:
+          path: /etc/gdm3/custom.conf
+          regexp: '^#WaylandEnable'
+          line: WaylandEnable=false
