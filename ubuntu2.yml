@@ -5,13 +5,13 @@
   tasks:
     - block: 
       - name: Remove files (delete files)
-      ansible.builtin.file:
-        path: '{{ item }}'
-        state: absent
-      loop:
-        - /tmp/teams.deb
-        - /tmp/discord.deb
-        - /tmp/etc.deb
+        ansible.builtin.file:
+          path: '{{ item }}'
+          state: absent
+        loop:
+          - /tmp/teams.deb
+          - /tmp/discord.deb
+          - /tmp/etc.deb
     - block: 
       - name: Descomentando WaylandEnable
         ansible.builtin.lineinfile:
