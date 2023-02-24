@@ -3,9 +3,9 @@
   hosts: localhost
   connection: local
   tasks:
-
     - name: Enable i386 architecture
       command: dpkg --add-architecture i386
+      become: true
 
     - name: Installing Linux Apps
       become: true
@@ -81,7 +81,6 @@
           - bbenoist.vagrant
           - hashicorp.terraform
           - 4ops.packer
-      
           
     - block: 
       - name: Download Teams
@@ -185,7 +184,8 @@
     
     - block: 
       - name: Descomentando WaylandEnable
-            ansible.builtin.lineinfile:
-              path: /etc/gdm3/custom.conf
-              regexp: '^#WaylandEnable'
-              line: WaylandEnable=false
+        ansible.builtin.lineinfile:
+          path: /etc/gdm3/custom.conf
+          regexp: '^#WaylandEnable'
+          line: WaylandEnable=false
+        become: true
