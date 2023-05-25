@@ -7,32 +7,6 @@
       command: dpkg --add-architecture i386
       become: true
 
-    - name: Installing Linux Apps
-      become: true
-      apt:
-        name: '{{ item }}'
-        install_recommends: yes
-        state: present
-        update_cache: true
-      loop:
-          - flameshot
-          - vim
-          - openconnect
-          - virtualbox
-          - apt-transport-https
-          - ca-certificates
-          - software-properties-common
-          - gnupg
-          - lsb-release
-          - transmission
-          - wine64
-          - wine32 
-          - libasound2-plugins:i386 
-          - libsdl2-2.0-0:i386 
-          - libdbus-1-3:i386 
-          - libsqlite3-0:i386
-
-
     - block:
       - name: Install Google Key
         become: true
@@ -49,6 +23,31 @@
         become: true
         apt:
           name: google-chrome-stable
+
+
+    - name: Installing Linux Apps
+      become: true
+      apt:
+        name: '{{ item }}'
+        install_recommends: yes
+        state: present
+        update_cache: true
+      loop:
+          - flameshot
+          - openconnect
+          - virtualbox
+          - apt-transport-https
+          - ca-certificates
+          - software-properties-common
+          - gnupg
+          - lsb-release
+          - transmission
+          - wine64
+          - wine32 
+          - libasound2-plugins:i386 
+          - libsdl2-2.0-0:i386 
+          - libdbus-1-3:i386 
+          - libsqlite3-0:i386
 
     - block:
       - name: Installing Vagrant 2.3.4
@@ -152,26 +151,16 @@
           dest: '/usr/local/bin/docker-compose'
           mode: 755
 
-    - block: 
-      - name: Download skype
-        get_url:
-          url: https://go.skype.com/skypeforlinux-64.deb
-          dest: /tmp
-      - name: Install skype
-        become: true
-        apt:
-          deb: /tmp/skypeforlinux-64.deb
+    # - block: 
+    #   - name: Download skype
+    #     get_url:
+    #       url: https://go.skype.com/skypeforlinux-64.deb
+    #       dest: /tmp
+    #   - name: Install skype
+    #     become: true
+    #     apt:
+    #       deb: /tmp/skypeforlinux-64.deb
           
-    - block: 
-      - name: Downlaod Asbru
-        get_url:
-          url: https://packagecloud.io/asbru-cm/asbru-cm/packages/linuxmint/tricia/asbru-cm_6.3.2-1_all.deb/download.deb?distro_version_id=211
-          dest: ~/Downloads
-      - name: Install Asbru
-        become: true
-        apt:
-          deb: /home/anderson/Downloads/asbru-cm_6.3.2-1_all.deb
-
     - block: 
       - name: Download lutris
         get_url:
