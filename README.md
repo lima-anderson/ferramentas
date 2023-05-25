@@ -2,7 +2,7 @@
 
 1. **Install Ansible**
 ```shell
-sudo apt update && sudo apt install ansible -y
+sudo apt-get update && sudo apt-get install ansible vim git -y
 ```
 
 2. **Clone this repository**
