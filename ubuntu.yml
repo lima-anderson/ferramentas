@@ -34,6 +34,7 @@
         update_cache: true
       loop:
           - flameshot
+          - net-tools
           - libfuse2
           - openconnect
           - virtualbox
