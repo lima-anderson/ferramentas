@@ -34,6 +34,7 @@
         update_cache: true
       loop:
           - flameshot
+          - libfuse2
           - openconnect
           - virtualbox
           - apt-transport-https
