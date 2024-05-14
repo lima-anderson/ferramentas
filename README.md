@@ -14,3 +14,15 @@ git clone https://github.com/lima-anderson/ferramentas.git
 ```shell
 ansible-playbook ferramentas/ubuntu.yml --ask-become-pass
 ```
+
+```
+chmod +x ferramentas/atalhos_k8s.sh
+```
+
+```
+cd ferramentas && sudo ./atalhos_k8s.sh
+```
+
+```
+reboot
+```
