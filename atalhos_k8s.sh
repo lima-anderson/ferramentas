@@ -5,6 +5,7 @@ atalhos=(
     "kd='kubectl describe'"
     "kl='kubectl logs'"
     "kx='kubectl exec -it'"
+    "k='kubectl'"
 )
 
 for atalho in "${atalhos[@]}"; do
